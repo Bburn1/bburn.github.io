@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="tomatoallbody" style="color:#324950; background: #FaFAFA;">
+    <div class="tomatoallheader">
+    <pre></pre>
+    <div class="hamburger-menu" >
+        <input id="menu__toggle" type="checkbox" >
+        <label class="menu__btn" for="menu__toggle" >
+        <span></span>
+        </label>
+      <ul class="menu__box" >
+        <li><a class="5" href="index1.html">Home</a></li>
+        <li><a class="menu__item" href="#">Company</a></li>
+        <li><a class="menu__item" href="#">Profile</a></li>
+        <li><a class="menu__item" href="Tomato all.html">Products</a></li>
+        <li><a class="menu__item" href="#">Services</a></li>
+        <li><a class="menu__item" href="#">R&D</a></li>
+        <li><a class="menu__item" href="contactus.html">Contact</a></li>
+      </ul>
+    </div>
+  <div class=container>
+      <div class="row">
+      <img id="pc" src="img/Logo.svg">
+      <div class=nav>
+          <form>
+              <div class=searchinput>
+                  <input name=search placeholder=Search>
+                  <img src="img/search.svg">
+              </div>
+          </form>
+          <nav>
+              <a href='index1.html'>Home</a>
+              <a href='#'>Company</a>
+              <a href='#'>Profile</a>
+              <a href='Kiwi all.html'>Products</a>
+              <a href='#'>Services</a>
+              <a href='#'>R&D</a>
+              <a href='contactus.html'>Contacts</a> 
+          </nav>
+      </div>
+  </div>
+  </div>
+    </div>
+    <figure>
+        <img src="img/cont.png">
+    </figure>
+
+
+    <div id=app class="container" style="margin-bottom: 50px;">
+        <h1 style="font-size: 44px; font-weight: bold;  margin-bottom: 40px; padding-top: 51px;" >Contact us</h1>
+        <table class="cart">
+            <tr class="cart-list">
+                <td class="cart-item" v-for="item in cart">
+                    <div class="cart-item-img">
+                        <img :src="'Kiwi/'+item.image" alt="">
+                    </div>
+                    <div class="cart-item-right">
+                        <div class="cart-item-subtitle">
+                            <h2>{{item.title}}</h2>
+                            <p>{{item.short_text}}</p>
+                        </div>
+                        <a class="cart-cross" href="#" @click.prevent="removeFromCart(item.id)">
+                            X
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    
+    <div class="col-12">
+        <p class="offercont__star" style="margin-bottom: 50px;">* * * * *</p>
+    </div>
+<form class="row" @submit.prevent = "makeOrder()" action="" v-if="formVisible">
+    <div class="col-6">
+        <div class="form-item">
+        <p id="pg4txt" >Name *</p>
+        <input v-model="contactFields[0].text" required type="text"></input><br><br>
+        </div>
+        <div class="form-item">
+        <p id="pg4txt">Company name</p>
+        <input v-model="contactFields[1].text"  type="text" ><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">Position</p>
+        <input v-model="contactFields[2].text"  type="text" ><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">City</p>
+        <input v-model="contactFields[3].text"  type="text" ><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">Country</p>
+        <input v-model="contactFields[4].text"  type="text" ><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">Telephone</p>
+        <input v-model="contactFields[5].text" type="text"  ><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">Email *</p>
+        <input v-model="contactFields[6].text"  required type="email" ><br><br>
+    </div>
+
+    </div>
+    <div class="col-6">
+    
+    <div class="form-item">
+        <p id="pg4txt">You are a</p>
+        <input v-model="contactFields[7].text" id="inputur" list="uar" name="uar" value="seed producer">
+        <datalist id="uar">
+          <option value="seed producer">
+          <option value="seed buyer">
+          <option value="seed manager">
+          <option value="seed seller">
+        </datalist><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">If other, please specify</p>
+        <input v-model="contactFields[8].text" id="inputur" type="text" name="uarspec"><br><br>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">You are interested in</p>
+        <textarea v-model="contactFields[9].text" type="text" name="interested" cols="40" rows="15" id="interested"></textarea>
+    </div>
+    <div class="form-item">
+        <p id="pg4txt">Please type this code</p>
+        <div class="verify">
+            <img src="img/codcont.png" alt="">
+            <input type="text">
+            <button type="submit">Send Message</button>
+        </div>
+    </div>
+    </div>
+</form>
+<ul class="contact-list" v-if="!formVisible">
+    <li class="contact-item" v-for="field in contactFields">
+        <div class="field-text" v-if="field.text">
+            <h2>{{field.caption}}</h2>
+            <p>{{field.text}}</p>
+        </div>
+    </li>
+    
+</ul>  
+</div>
+</div>
+<div style="background-color: #ffffff;">
+<div class="container" >
+<div class="row">
+    <div class="col" align=center style="padding-top: 44px; margin-bottom: 44px;">
+        <p style="font-size: 20px;color: #57984C;font-weight: bold; margin-bottom: -5px;">Our Address</p>
+        <img src="img/Line 2.svg">
+        <p>AGRIDERA Seeds & Agriculture Ltd.<br>
+            P.O Box 103,<br>
+            Gedera 70750, Israel.<br>
+            Telephone: <label style="color:#57984C"> +972 8 944 9222</label></p>
+    </div>
+</div>
+</div>
+</div>
+
+    <div class="down">
+        <div class="container">
+            <div class="row">
+                <div id="Text1" class="col-9" >
+                    <span> <a class="link" href="">PROFILE</a>
+                        <a class="link" href=""> MANAGEMENT</a>
+                         <a class="link" href="">  PRODUCTS</a>
+                         <a class="link" href=""> R&D</a>
+                        <a class="link" href=""> LINKS</a>
+                        <a class="link" href=""> SITEMAP</a> 
+                         <a class="link" href=""> CONTACT</a>
+                    </span>
+                </div>
+                <div class="dwp" class=" col-3">
+                    <span>
+                        <img src="img/d1.svg"  >
+                        <img src="img/d2.svg" >
+                        <img src="img/d3.svg" >
+                        <img src="img/d4.svg" >
+                        <img src="img/d5.svg" >
+                        <pre></pre>
+                    </span>
+                </div> 
+        </div>  
+    </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <p class="col-12"></p>
+  
+                <a class="ftr" class="col" href="">AGRIDERA SEEDS & AGRICULTURE LTD. © 2020</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  </html>
